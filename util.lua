@@ -162,7 +162,7 @@ function table.clear(t, v)
 end
 
 function table.merge(t1, t2)
-  t2 = t2 or {}
+  t1, t2 = t1 or {}, t2 or {}
   for k, v in pairs(t1) do t2[k] = table.copy(v) end
   return t2
 end
@@ -238,8 +238,8 @@ end
 f = {}
 f.empty = function() end
 f.exe = function(x, ...) if x then return x(...) end end
-f.ego = function(f) return function(x, ...) x[f](x, ...) end end
-f.egoexe = function(f) return function(x, ...) if x[f] then x[f](x, ...) end end end
+f.ego = function(f, ...) local a = {...} return function(x) x[f](x, unpack(a)) end end
+f.egoexe = function(f, ...) local a = {...} return function(x) if x[f] then x[f](x, unpack(a)) end end end
 f.val = function(x) return type(x) == 'function' and x or function() return x end end
 f.cur = function(fn, x) return function(y) return fn(x, y) end end
 
