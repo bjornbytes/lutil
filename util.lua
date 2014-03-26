@@ -138,7 +138,7 @@ end
 
 function table.each(t, f)
   if not t then return end
-  for k, v in pairs(t) do f(v, k) end
+  for k, v in pairs(t) do if f(v, k) then break end end
 end
 
 function table.with(t, k, exe)
