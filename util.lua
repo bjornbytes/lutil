@@ -167,6 +167,21 @@ function table.merge(t1, t2)
   return t2
 end
 
+function table.deltas(t1, t2)
+  local res = {}
+  for k, v in pairs(t1) do
+    if type(t1[k]) ~= type(t2[k]) then
+      res[k] = type(t2[k]) == 'table' and table.copy(t2[k]) or t2[k]
+    elseif type(t2[k]) == 'table' then
+      res[k] = table.deltas(t1[k], t2[k])
+    elseif t1[k] ~= t2[k] then
+      res[k] = t2[k]
+    end
+  end
+  
+  return res
+end
+
 function table.interpolate(t1, t2, z)
   local interp = table.copy(t1)
   for k, v in pairs(interp) do
