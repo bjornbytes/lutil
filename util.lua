@@ -141,9 +141,8 @@ function table.each(t, f)
   for k, v in pairs(t) do if f(v, k) then break end end
 end
 
-function table.with(t, k, exe)
-  local f = exe and f.egoexe or f.ego
-  return table.each(t, f(k))
+function table.with(t, k, ...)
+  return table.each(t, f.egoexe(k, ...))
 end
 
 function table.map(t, f)
