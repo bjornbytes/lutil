@@ -30,6 +30,7 @@ function math.dx(len, dir) return len * math.cos(dir) end
 function math.dy(len, dir) return len * math.sin(dir) end
 function math.distance(x1, y1, x2, y2) return ((x2 - x1) ^ 2 + (y2 - y1) ^ 2) ^ .5 end
 function math.direction(x1, y1, x2, y2) return math.atan2(y2 - y1, x2 - x1) end
+function math.vector(...) return math.distance(...), math.direction(...) end
 function math.inside(px, py, rx, ry, rw, rh) return px >= rx and px <= rx + rw and py >= ry and py <= ry + rh end
 function math.anglediff(d1, d2) return math.rad((((math.deg(d2) - math.deg(d1) % 360) + 540) % 360) - 180) end
 function math.hcora(cx, cy, cr, rx, ry, rw, rh) -- Hot circle on rectangle action.
@@ -256,13 +257,6 @@ f.ego = function(f, ...) local a = {...} return function(x) x[f](x, unpack(a)) e
 f.egoexe = function(f, ...) local a = {...} return function(x) if x[f] then x[f](x, unpack(a)) end end end
 f.val = function(x) return type(x) == 'function' and x or function() return x end end
 f.cur = function(fn, x) return function(y) return fn(x, y) end end
-
-
-----------------
--- Timers
-----------------
-timer = {}
-timer.rot = function(val, fn) if not val or val == 0 then return val end if val <= tickRate then f.exe(fn) return 0 end return val - tickRate end
 
 
 ----------------
