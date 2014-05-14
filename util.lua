@@ -196,6 +196,13 @@ function table.interpolate(t1, t2, z)
   return interp
 end
 
+function table.shuffle(t)
+  for i = 1, #t do
+    local a, b = math.random(#t), math.random(#t)
+    t[a], t[b] = t[b], t[a]
+  end
+end
+
 function table.count(t)
   local ct = 0
   table.each(t, function() ct = ct + 1 end)
