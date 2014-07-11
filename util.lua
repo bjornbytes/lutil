@@ -203,7 +203,7 @@ f.ego = function(f, ...) local a = {...} return function(x) x[f](x, unpack(a)) e
 f.egoexe = function(f, ...) local a = {...} return function(x) if x[f] then x[f](x, unpack(a)) end end end
 f.val = function(x) return type(x) == 'function' and x or function() return x end end
 f.cur = function(fn, x) return function(y) return fn(x, y) end end
-f.wrap = function(fn, ...) local a = {...} return function() f(unpack(a)) end end
+f.wrap = function(fn, ...) local a = {...} return function() fn(unpack(a)) end end
 
 
 ----------------
