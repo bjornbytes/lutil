@@ -169,31 +169,6 @@ end
 
 
 ----------------
--- Byte
-----------------
-byte = {}
-function byte.extract(x, a, b)
-  b = b or a
-  x = x % (2 ^ (b + 1))
-  for i = 1, a do
-    x = math.floor(x / 2)
-  end
-  return x
-end
-
-function byte.insert(x, y, a, b)
-  local res = x
-  for i = a, b do
-    local e = byte.extract(y, i - a)
-    if e ~= byte.extract(x, i) then
-      res = (e == 1) and res + (2 ^ i) or res - (2 ^ i)
-    end
-  end
-  return res
-end
-
-
-----------------
 -- Functions
 ----------------
 f = {}
