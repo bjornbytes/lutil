@@ -184,4 +184,4 @@ f.wrap = function(fn, ...) local a = {...} return function() fn(unpack(a)) end e
 ----------------
 -- String
 ----------------
-string.capitalize = function(s) s = ' ' .. s return s:gsub('(%s%l)', string.upper) end
+string.capitalize = function(s) s = ' ' .. s return s:gsub('(%s%l)', string.upper):sub(2) end
