@@ -173,7 +173,7 @@ end
 ----------------
 f = {}
 f.empty = function() end
-f.exe = function(x, ...) if x then return x(...) end end
+f.exe = function(x, ...) return type(x) == 'function' and x(...) or x end
 f.ego = function(f, ...) local a = {...} return function(x) x[f](x, unpack(a)) end end
 f.egoexe = function(f, ...) local a = {...} return function(x) if x[f] then x[f](x, unpack(a)) end end end
 f.val = function(x) return type(x) == 'function' and x or function() return x end end
