@@ -163,7 +163,7 @@ function table.print(t, n)
       else io.write('\t') end
       table.print(v, n + 1)
     end
-    if empty then io.write('{}\n') end
+    if empty then io.write(string.rep('\t', n) .. '{}\n') end
   end
 end
 
