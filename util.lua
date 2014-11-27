@@ -76,6 +76,18 @@ function table.except(t, ks)
   return res
 end
 
+function table.keys(t)
+  local res = {}
+  table.each(t, function(_, k) table.insert(res, k) end)
+  return res
+end
+
+function table.values(t)
+  local res = {}
+  table.each(t, function(v) table.insert(res, v) end)
+  return res
+end
+
 function table.each(t, f)
   if not t then return end
   for k, v in pairs(t) do if f(v, k) then break end end
