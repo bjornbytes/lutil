@@ -88,6 +88,18 @@ function table.values(t)
   return res
 end
 
+function table.take(t, n)
+  local res = {}
+  for i = 1, n do res[i] = t[i] end
+  return res
+end
+
+function table.drop(t, n)
+  local res = table.copy(t)
+  for i = 1, n do table.remove(t, 1) end
+  return res
+end
+
 function table.each(t, f)
   if not t then return end
   for k, v in pairs(t) do if f(v, k) then break end end
